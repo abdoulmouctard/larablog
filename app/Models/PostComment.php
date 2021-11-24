@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class PostComment extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        "post_id",
+        "title",
+        "published",
+        "content"
+    ];
 }
