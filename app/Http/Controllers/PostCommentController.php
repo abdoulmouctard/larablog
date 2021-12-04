@@ -5,82 +5,88 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StorePostCommentRequest;
 use App\Http\Requests\UpdatePostCommentRequest;
 use App\Models\PostComment;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 
 class PostCommentController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return View
      */
-    public function index()
+    public function index(): View
     {
-        //
+        $postComments = PostComment::query()->paginate();
+        return view("post-comments.index", compact("postComments"));
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return View
      */
-    public function create()
+    public function create(): View
     {
-        //
+        return view("post-comments.create");
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StorePostCommentRequest  $request
-     * @return \Illuminate\Http\Response
+     * @param StorePostCommentRequest $request
+     * @return RedirectResponse
      */
     public function store(StorePostCommentRequest $request)
     {
-        //
+        // TODO: créer la resource
+        return redirect()->route("post-comments.show");
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\PostComment  $postComment
-     * @return \Illuminate\Http\Response
+     * @param PostComment $postComment
+     * @return View
      */
-    public function show(PostComment $postComment)
+    public function show(PostComment $postComment): View
     {
-        //
+        return view("post-comments.show");
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\PostComment  $postComment
-     * @return \Illuminate\Http\Response
+     * @param PostComment $postComment
+     * @return View
      */
-    public function edit(PostComment $postComment)
+    public function edit(PostComment $postComment): View
     {
-        //
+        return view("post-comments.edit");
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdatePostCommentRequest  $request
-     * @param  \App\Models\PostComment  $postComment
-     * @return \Illuminate\Http\Response
+     * @param UpdatePostCommentRequest $request
+     * @param PostComment $postComment
+     * @return RedirectResponse
      */
-    public function update(UpdatePostCommentRequest $request, PostComment $postComment)
+    public function update(UpdatePostCommentRequest $request, PostComment $postComment): RedirectResponse
     {
-        //
+        // TODO: met à jour la resource
+        return redirect()->route("post-comments.show");
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\PostComment  $postComment
-     * @return \Illuminate\Http\Response
+     * @param PostComment $postComment
+     * @return RedirectResponse
      */
-    public function destroy(PostComment $postComment)
+    public function destroy(PostComment $postComment): RedirectResponse
     {
-        //
+        // TODO: supprimer la resource la resource
+        return redirect()->route("post-comments.index");
     }
 }
