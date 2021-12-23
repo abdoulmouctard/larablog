@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -22,7 +23,7 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();
             $table->tinyText("intro")->nullable();
-            $table->enum("profile", ['ADMIN', 'STANDARD']);
+            $table->enum("profile", User::PROFILES);
             $table->rememberToken();
             $table->timestamps();
         });

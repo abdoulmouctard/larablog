@@ -19,7 +19,7 @@ class CreatePostsTable extends Migration
             $table->string("slug")->unique();
             $table->tinyText("summary");
             $table->longText("content");
-            $table->boolean("published_at")->nullable();
+            $table->dateTime("published_at")->nullable();
             $table->foreignId("user_id")
                 ->constrained()
                 ->cascadeOnDelete()
