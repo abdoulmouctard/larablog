@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,4 +16,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+
+Route::get("test", function () {
+
+    /** @var Post $post */
+    $posts = Post::query()->with("categories")->paginate();
+
+    return view("eloquent", compact("posts"));
 });
